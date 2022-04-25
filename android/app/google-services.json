@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "129360282300",
+    "project_id": "grafoeye",
+    "storage_bucket": "grafoeye.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:129360282300:android:e5b91f7b89d7a6488606b9",
+        "android_client_info": {
+          "package_name": "com.grafo_eye"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "129360282300-2bgh1gmdbcr2vlbkgmhu5v8rclcqeo0v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF1oU9h_K8ZaTkfFKoZMrLqVFrU9EwkGw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "129360282300-2bgh1gmdbcr2vlbkgmhu5v8rclcqeo0v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
