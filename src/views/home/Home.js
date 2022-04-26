@@ -1,4 +1,4 @@
-import React, { Fragment, Component, useState } from 'react';
+import React, { Fragment, Component, useState, useEffect } from 'react';
 import {
     ActivityIndicator,
     StyleSheet,
@@ -17,15 +17,18 @@ import Report from '../report/Report'
 //import firestore from '@react-native-firebase/firestore';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { connect } from 'react-redux'
-//import { saveImageURI } from '../../store/actions/prediction'
+import { getPrediction } from '../../store/actions/prediction'
+//import { getAllAssesments } from '../../store/actions/counts';
+import axios from 'axios'
 
 const Home = ({ navigation }, props) => {
 
     const [image, setImage] = useState(null)
     const [imageFilename, setImageFilename] = useState(null)
 
-
-
+    useEffect(() => {
+        getPrediction()
+    }, []);
 
     const openTheCamera = () => {
         console.log('open cam')
@@ -55,9 +58,29 @@ const Home = ({ navigation }, props) => {
         });
     }
 
-    const getPrediction = () => {
+    function getOutput() {
         console.log('display prediction')
-        //uploadImageToFirestore();
+        getPrediction();
+        let config = {
+            method: 'post',
+            url: `http://10.0.2.2:5000/data`,
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            data: {
+                filename: 'image20.png'
+
+            }
+        };
+
+        axios(config)  //45457
+            .then(data => {
+                console.log('Loaded prediction ', data.data.prediction)
+
+
+            }).catch((error) => {
+                console.log("error ", error)
+
+            })
+
     }
 
 
@@ -75,6 +98,8 @@ const Home = ({ navigation }, props) => {
             console.log(e)
         }
     };
+
+
 
     return (
         <View style={styles.container}>
@@ -100,7 +125,7 @@ const Home = ({ navigation }, props) => {
                 //loading={loading}
                 mode="contained"
                 //onPress={() => navigation.navigate('MainBottomNavContainer')}
-                onPress={() => getPrediction()}
+                onPress={() => getOutput()}
                 style={{ width: 170, height: 51 }}
             >
                 Get prediction
@@ -140,17 +165,17 @@ const styles = StyleSheet.create({
     }
 });
 
-/*
+
 function mapStateToProps(state) {
     console.log(state)
     return {
 
-        URI: state.predictionReducer.imageUriPath
+
 
 
     }
 
 }
 
-export default connect(mapStateToProps, { saveImageURI })(Home); */
-export default Home; 
+export default connect(mapStateToProps, { getPrediction })(Home);
+//export default Home; 

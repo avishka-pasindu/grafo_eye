@@ -28,7 +28,7 @@ class TestApp extends Component {
         return (
             <View styles={styles.container}>
 
-                <Text style={styles.textCenter}>{AssesmentList.title}</Text>
+                <Text style={styles.textCenter}>{AssesmentList.output}</Text>
 
                 <Button
                     title="load data"

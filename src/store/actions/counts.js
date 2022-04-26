@@ -14,11 +14,12 @@ export function changeCount(count) {
 }
 
 export const getAllAssesments = () => {
+    console.log('hi user')
     return dispatch => {
         getAllAssesmentsLoading(dispatch)
-        axios.get(`https://jsonplaceholder.typicode.com/todos/2`)
+        axios.get(`http://10.0.2.2:5000/`)
             .then(data => {
-                console.log('Loaded ',data.data)
+                console.log('Loaded ', data.data.output)
                 getAllAssesmentsSuccess(dispatch, data.data)
 
             }).catch((error) => {
