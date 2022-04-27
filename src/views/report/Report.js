@@ -3,11 +3,12 @@ import React, { Fragment, Component, useState, useEffect, useContext } from 'rea
 import {
     ActivityIndicator,
     StyleSheet,
-    View,
+    View, SafeAreaView, ScrollView,
     Alert,
     Image,
     Text
 } from 'react-native';
+import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Button from '../../components/Button'
 import { async } from '@firebase/util';
@@ -128,35 +129,67 @@ const Report = ({ navigation }, props) => {
     }, []);
 
     return (
-        <View style={styles.container}>
-            <Text style={{ color: '#092C4C', marginLeft: 15 }}>Full details about personality traits and handwriting features along with prediction</Text>
-            <TextInput style={{ width: 338, marginLeft: 27, color: '#092C4C' }}
-                label="Writer's name"
-                returnKeyType="next"
-                value={writerName}
-                onChangeText={(name) => setWriterName(name)}
-                error={''}
-                errorText={''}
+        <SafeAreaView>
+            <ScrollView>
+                <View style={styles.container}>
+                    <Image style={{ width: 340, height: 180, marginTop: 20, marginBottom: 10, borderRadius: 8, borderColor: '#092C4C', borderWidth: 2 }} source={{ uri: imageURI }} />
+                    <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 180, width: 350 }}>
+
+                        <Card.Content>
+                            <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, fontWeight: 'bold', }}>Extracted handwriting features</Title>
+
+                        </Card.Content>
 
 
-            />
+                    </Card>
+                    <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 100, width: 350 }}>
 
-            <Image style={{ width: 340, height: 180, marginTop: 0, marginBottom: 10, borderRadius: 8, borderColor: '#092C4C', borderWidth: 2 }} source={{ uri: imageURI }} />
+                        <Card.Content>
+                            <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, fontWeight: 'bold', }}>Predicted personality group</Title>
 
-            {uploading ? <View>
-                <Text>{transferred} % Completed </Text>
-                <ActivityIndicator size="large" color="#092C4C" />
-            </View> : <Button
-                //loading={loading}
-                mode="contained"
-                //onPress={() => navigation.navigate('MainBottomNavContainer')}
-                onPress={() => saveProfile()}
-                style={{ width: 170, height: 51, marginTop: 10 }}
-            >
-                save profile
-            </Button>}
+                        </Card.Content>
 
-        </View>
+
+                    </Card>
+
+                    <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 200, width: 350 }}>
+
+                        <Card.Content>
+                            <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, fontWeight: 'bold', }}>Personality traits of predicted group</Title>
+
+                        </Card.Content>
+
+
+                    </Card>
+                    <TextInput style={{ width: 338, marginLeft: 27, color: '#092C4C', height: 50, fontSize: 15 }}
+                        label="Writer's name"
+                        returnKeyType="next"
+                        value={writerName}
+                        onChangeText={(name) => setWriterName(name)}
+                        error={''}
+                        errorText={''}
+
+
+                    />
+
+
+                    {uploading ? <View>
+                        <Text>{transferred} % Completed </Text>
+                        <ActivityIndicator size="large" color="#092C4C" />
+                    </View> : <Button
+                        //loading={loading}
+                        mode="contained"
+                        //onPress={() => navigation.navigate('MainBottomNavContainer')}
+                        onPress={() => saveProfile()}
+                        style={{ width: 340, height: 51, marginTop: 20, marginBottom: 20 }}
+                    >
+                        save profile
+                    </Button>}
+
+                </View>
+
+            </ScrollView>
+        </SafeAreaView>
 
     );
 

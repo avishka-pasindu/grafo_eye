@@ -19,14 +19,23 @@ export const saveImageURI = (uri) => {
 }
 
 export const getPrediction = () => {
-    console.log('hello')
+
     return dispatch => {
-        console.log('hello2')
+
         getPredictionLoading(dispatch)
-        console.log('hello3')
-        axios.get(`http://10.0.2.2:5000/`)
+        let config = {
+            method: 'post',
+            url: `http://10.0.2.2:5000/data`,
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            data: {
+                filename: 'image20.png'
+
+            }
+        };
+
+        axios(config)
             .then(data => {
-                console.log('Loaded  ', data.data)
+                console.log('redux data ', data.data)
                 getPredictionSuccess(dispatch, data.data)
 
             }).catch((error) => {

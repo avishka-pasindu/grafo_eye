@@ -3,10 +3,12 @@ import {
     ActivityIndicator,
     StyleSheet,
     Platform,
+    SafeAreaView, ScrollView,
     Image,
     View,
     Text
 } from 'react-native';
+import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ImagePicker from 'react-native-image-crop-picker';
@@ -21,13 +23,14 @@ import { getPrediction } from '../../store/actions/prediction'
 //import { getAllAssesments } from '../../store/actions/counts';
 import axios from 'axios'
 
-const Home = ({ navigation }, props) => {
+const Home = (props, { navigation }) => {
 
     const [image, setImage] = useState(null)
     const [imageFilename, setImageFilename] = useState(null)
+    const { output } = props;
 
     useEffect(() => {
-        getPrediction()
+        //props.getPrediction()
     }, []);
 
     const openTheCamera = () => {
@@ -54,45 +57,51 @@ const Home = ({ navigation }, props) => {
             setImage(imageUri);
             console.log(imageUri);
             setImageFilename(imageUri.substring(imageUri.lastIndexOf('/') + 1))
-            console.log('filename is ', imageFilename)
+
         });
+        //console.log('filename is ', imageFilename)
     }
 
     function getOutput() {
+        props.getPrediction();
         console.log('display prediction')
-        getPrediction();
-        let config = {
-            method: 'post',
-            url: `http://10.0.2.2:5000/data`,
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            data: {
-                filename: 'image20.png'
 
-            }
-        };
-
-        axios(config)  //45457
-            .then(data => {
-                console.log('Loaded prediction ', data.data.prediction)
-
-
-            }).catch((error) => {
-                console.log("error ", error)
-
-            })
-
+        /*   let config = {
+               method: 'post',
+               url: `http://10.0.2.2:5000/data`,
+               headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+               data: {
+                   filename: 'image20.png'
+   
+               }
+           };
+   
+           axios(config)  //45457
+               .then(data => {
+                   console.log('Loaded prediction ', data.data.prediction)
+   
+   
+               }).catch((error) => {
+                   console.log("error ", error)
+   
+               })
+   */
     }
 
+    function clearInputs() {
+        console.log('clear inputs!')
+        setImage(null)
+    }
 
 
     const passImagePath = async () => {
         //saveImageURI(image)
-        navigation.navigate('Report')
+        //navigation.navigate('Report')
 
         try {
             await AsyncStorage.setItem('@imageURI', image);
             console.log('image URI saved ...', image)
-            navigation.navigate('Report')
+            props.navigation.navigate('Report')
 
         } catch (e) {
             console.log(e)
@@ -102,45 +111,94 @@ const Home = ({ navigation }, props) => {
 
 
     return (
-        <View style={styles.container}>
+        <SafeAreaView>
+            {image != null ?
 
-            {image != null
-                ?
-                <Image style={{ width: 340, height: 180, marginTop: -260, marginBottom: 10, borderRadius: 8, borderColor: '#092C4C', borderWidth: 2 }} source={{ uri: image }} />
+                <ScrollView>
+                    <View style={styles.container}>
+
+
+                        <Image style={{ width: 350, height: 180, marginTop: 20, marginBottom: 10, borderRadius: 8, borderColor: '#092C4C', borderWidth: 2 }} source={{ uri: image }} />
+
+                        <Button
+                            //loading={loading}
+                            mode="contained"
+                            //onPress={() => navigation.navigate('MainBottomNavContainer')}
+                            onPress={() => getOutput()}
+                            style={{ width: 200, height: 50, marginLeft: 145 }}
+                        >
+                            Get prediction
+                        </Button>
+                        <Button
+                            //loading={loading}
+                            mode="contained"
+                            //onPress={() => navigation.navigate('MainBottomNavContainer')}
+                            onPress={() => clearInputs()}
+                            style={{ width: 118, height: 50, marginTop: -60, marginLeft: -228 }}
+                        >
+                            Clear
+                        </Button>
+
+                        <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 180, width: 350 }}>
+
+                            <Card.Content>
+                                <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, fontWeight: 'bold', }}>Extracted handwriting features</Title>
+
+                            </Card.Content>
+
+
+                        </Card>
+                        <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 100, width: 350 }}>
+
+                            <Card.Content>
+                                <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, fontWeight: 'bold', }}>Predicted personality group</Title>
+
+                            </Card.Content>
+
+
+                        </Card>
+
+                        <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 200, width: 350 }}>
+
+                            <Card.Content>
+                                <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, fontWeight: 'bold', }}>Personality traits of predicted group</Title>
+
+                            </Card.Content>
+
+
+                        </Card>
+
+
+                        <Button
+                            //loading={loading}
+                            mode="contained"
+                            //onPress={() => navigation.navigate('MainBottomNavContainer')}
+                            onPress={() => passImagePath()}
+                            style={{ width: 345, height: 50, marginBottom: 30, marginTop: 10 }}
+                        >
+                            Continue to full report
+                        </Button>
+
+
+                    </View>
+
+
+                </ScrollView>
                 :
-                <Image style={{ width: 340, height: 180, marginTop: -260, marginBottom: 10, borderRadius: 8, borderColor: '#092C4C', borderWidth: 2 }} source={{ uri: null }} />}
-            <ActionButton buttonColor="#F2994A">
-                <ActionButton.Item buttonColor='#092C4C' title="Take photo" onPress={openTheCamera}>
-                    <Icon name="camera" style={styles.actionButtonIcon} />
-                </ActionButton.Item>
-                <ActionButton.Item buttonColor='#092C4C' title="Choose photo" onPress={openTheGallery}>
-                    <Icon name="images" style={styles.actionButtonIcon} />
-                </ActionButton.Item>
+                <View style={styles.container}>
+                    <Image style={{ width: 350, height: 180, marginTop: 220, marginBottom: 10, borderRadius: 8, borderColor: '#092C4C', borderWidth: 2 }} source={{ uri: image }} />
+                    <ActionButton buttonColor="#F2994A" style={{ marginTop: 490 }}>
+                        <ActionButton.Item buttonColor='#092C4C' title="Take photo" onPress={openTheCamera}>
+                            <Icon name="camera" style={styles.actionButtonIcon} />
+                        </ActionButton.Item>
+                        <ActionButton.Item buttonColor='#092C4C' title="Choose photo" onPress={openTheGallery}>
+                            <Icon name="images" style={styles.actionButtonIcon} />
+                        </ActionButton.Item>
 
-            </ActionButton>
+                    </ActionButton>
+                </View>}
 
-
-
-            <Button
-                //loading={loading}
-                mode="contained"
-                //onPress={() => navigation.navigate('MainBottomNavContainer')}
-                onPress={() => getOutput()}
-                style={{ width: 170, height: 51 }}
-            >
-                Get prediction
-            </Button>
-            <Button
-                //loading={loading}
-                mode="contained"
-                //onPress={() => navigation.navigate('MainBottomNavContainer')}
-                onPress={() => passImagePath()}
-                style={{ width: 170, height: 51, marginTop: 0 }}
-            >
-                View report
-            </Button>
-
-        </View>
+        </SafeAreaView>
 
     );
 
@@ -167,10 +225,11 @@ const styles = StyleSheet.create({
 
 
 function mapStateToProps(state) {
-    console.log(state)
+    // console.log(state)
     return {
 
 
+        output: state.predictionReducer.output
 
 
     }
