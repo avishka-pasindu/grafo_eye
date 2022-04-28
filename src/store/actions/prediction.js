@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {
 
-    SAVE_IMAGE_URI, GET_PREDICTION_FAILED, GET_PREDICTION_LOADING, GET_PREDICTION_SUCCESS
+    SAVE_IMAGE_URI, GET_PREDICTION_FAILED, GET_PREDICTION_LOADING, GET_PREDICTION_SUCCESS, CLEAR_CURRENT_PREDICTION
 
 } from '../../constants';
 
@@ -46,9 +46,17 @@ export const getPrediction = () => {
 
 }
 
+export const clearCurrentPrediction = () => {
+    return dispatch => {
+        clearPred(dispatch)
+        console.log('cleared prediction from state!')
+    }
+
+}
 
 const saveURI = (dispatch, data) => { dispatch({ type: SAVE_IMAGE_URI, payload: data }) }
 const getPredictionLoading = (dispatch) => { dispatch({ type: GET_PREDICTION_LOADING }) }
 const getPredictionSuccess = (dispatch, data) => { dispatch({ type: GET_PREDICTION_SUCCESS, payload: data }) }
 const getPredictionFailed = (dispatch, error) => { dispatch({ type: GET_PREDICTION_FAILED, error }) }
+const clearPred = (dispatch) => { dispatch({ type: CLEAR_CURRENT_PREDICTION }) }
 

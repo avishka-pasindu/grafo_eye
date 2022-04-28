@@ -132,7 +132,7 @@ const Report = ({ navigation }, props) => {
         <SafeAreaView>
             <ScrollView>
                 <View style={styles.container}>
-                    <Image style={{ width: 340, height: 180, marginTop: 20, marginBottom: 10, borderRadius: 8, borderColor: '#092C4C', borderWidth: 2 }} source={{ uri: imageURI }} />
+                    <Image style={{ width: 340, height: 180, marginTop: 15, marginBottom: 10, borderRadius: 8, borderColor: '#092C4C', borderWidth: 2 }} source={{ uri: imageURI }} />
                     <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 180, width: 350 }}>
 
                         <Card.Content>
