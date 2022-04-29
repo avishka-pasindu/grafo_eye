@@ -170,7 +170,7 @@ const Profile = ({ navigation }, props) => {
             {singleProfile != null && viewState === true ?
                 <ScrollView>
                     <View style={styles.container}>
-                        <Text>Full details about personality traits and handwriting features along with prediction of - {singleProfile[0].writerName}</Text>
+                        <Text>Writer's name - {singleProfile[0].writerName}</Text>
                         <View>
                             <Image style={{ width: 340, height: 180, marginTop: 20, marginBottom: 10, borderRadius: 8, borderColor: '#092C4C', borderWidth: 2 }} source={{ uri: singleProfile[0].handwritingImage }} />
                         </View>

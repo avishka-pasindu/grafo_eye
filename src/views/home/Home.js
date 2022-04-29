@@ -63,7 +63,7 @@ const Home = (props, { navigation }) => {
     }
 
     function getOutput() {
-        props.getPrediction();
+        props.getPrediction(imageFilename);
         console.log('display prediction')
 
         /*   let config = {
@@ -143,7 +143,7 @@ const Home = (props, { navigation }) => {
                             Clear
                         </Button>
 
-                        {outputLoading ? <ActivityIndicator /> :
+                        {outputLoading ? <ActivityIndicator size={'large'} /> :
                             <View>
                                 {showCards ? <View>
                                     <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 305, width: 350 }}>
@@ -208,7 +208,7 @@ const Home = (props, { navigation }) => {
                 </ScrollView>
                 :
                 <View style={styles.container}>
-                    <Image style={{ width: 350, height: 180, marginTop: 220, marginBottom: 10, borderRadius: 8, borderColor: '#092C4C', borderWidth: 2 }} source={{ uri: image }} />
+                    <Image style={{ width: 200, height: 150, marginTop: 190, marginBottom: 10, borderRadius: 8 }} source={{ uri: 'https://res.cloudinary.com/ddyx8lon3/image/upload/v1651214282/logo-transparent_s5onei.png' }} />
                     <ActionButton buttonColor="#F2994A" style={{ marginTop: 490 }}>
                         <ActionButton.Item buttonColor='#092C4C' title="Take photo" onPress={openTheCamera}>
                             <Icon name="camera" style={styles.actionButtonIcon} />

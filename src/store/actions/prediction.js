@@ -18,7 +18,7 @@ export const saveImageURI = (uri) => {
     }
 }
 
-export const getPrediction = () => {
+export const getPrediction = (file) => {
 
     return dispatch => {
 
@@ -28,7 +28,7 @@ export const getPrediction = () => {
             url: `http://10.0.2.2:5000/data`,
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             data: {
-                filename: 'image20.png'
+                filename: file
 
             }
         };
