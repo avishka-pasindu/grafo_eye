@@ -19,7 +19,7 @@ import TextInput from '../../components/TextInput';
 import { AuthContext } from '../../core/AuthProvider';
 
 
-const Report = ({ navigation }, props) => {
+const Report = (props, { navigation }) => {
 
     //const { imageUriPath } = props;
 
@@ -28,6 +28,7 @@ const Report = ({ navigation }, props) => {
     const [transferred, setTransferred] = useState(0)
     const [writerName, setWriterName] = useState('')
     const { user } = useContext(AuthContext)
+    const { output, outputLoading, showCards } = props;
 
     const getImageURI = async () => {
         try {
@@ -86,7 +87,8 @@ const Report = ({ navigation }, props) => {
             .add({
                 writer: writerName,
                 image: imageLink,
-                user: user.email
+                user: user.email,
+                outputData: output
             })
             .then(() => {
                 console.log('Data added!');
@@ -117,7 +119,7 @@ const Report = ({ navigation }, props) => {
     }
 
     useEffect(() => {
-        navigation.addListener('focus', () => {
+        props.navigation.addListener('focus', () => {
             console.log('report page loaded ...')
             getImageURI();
             console.log('loaded URI ', getImageURI())
@@ -133,11 +135,21 @@ const Report = ({ navigation }, props) => {
             <ScrollView>
                 <View style={styles.container}>
                     <Image style={{ width: 340, height: 180, marginTop: 15, marginBottom: 10, borderRadius: 8, borderColor: '#092C4C', borderWidth: 2 }} source={{ uri: imageURI }} />
-                    <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 180, width: 350 }}>
+                    <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 310, width: 350 }}>
 
                         <Card.Content>
                             <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, fontWeight: 'bold', }}>Extracted handwriting features</Title>
-
+                            <Text style={{ marginTop: 2 }}>{'\u29BF'} Baseline - {output.baseline}</Text>
+                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Pen pressure - {output.pen_pressure}</Text>
+                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Letter size - {output.letter_size}</Text>
+                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Line spacing - {output.line_spacing}</Text>
+                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Margin left - {output.margin_left}</Text>
+                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Margin Right - {output.margin_right}</Text>
+                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Tittle 'i' - {output.tittle_i}</Text>
+                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Lowercase letter 't' - {output.letter_t}</Text>
+                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Lowercase letter 'f' - {output.letter_f}</Text>
+                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Connected strokes - {output.connected_strokes}</Text>
+                            <Text style={{ marginTop: 4, marginBottom: 4 }}>{'\u29BF'} Letter slant -  {output.letter_slant}</Text>
                         </Card.Content>
 
 
@@ -146,7 +158,7 @@ const Report = ({ navigation }, props) => {
 
                         <Card.Content>
                             <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, fontWeight: 'bold', }}>Predicted personality group</Title>
-
+                            <Text>{output.prediction}</Text>
                         </Card.Content>
 
 
@@ -155,7 +167,29 @@ const Report = ({ navigation }, props) => {
                     <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 200, width: 350 }}>
 
                         <Card.Content>
-                            <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, fontWeight: 'bold', }}>Personality traits of predicted group</Title>
+                            <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, fontWeight: 'bold', }}>Description on predicted group</Title>
+                            <Text style={{ marginTop: 7 }}>{output.personality_description_big_5}</Text>
+                        </Card.Content>
+
+
+                    </Card>
+                    <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 380, width: 350 }}>
+
+                        <Card.Content>
+                            <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, fontWeight: 'bold', }}>Description on personality traits using all handwriting features</Title>
+
+
+                            {output.trait_baseline != '' ? <Text style={{ marginTop: 7 }}>{output.trait_baseline}</Text> : null}
+                            {output.trait_connected_strokes != '' ? <Text style={{ marginTop: 7 }}>{output.trait_connected_strokes}</Text> : null}
+                            {output.trait_letter_f != '' ? <Text style={{ marginTop: 7 }}>{output.trait_letter_f}</Text> : null}
+                            {output.trait_letter_size != '' ? <Text style={{ marginTop: 7 }}>{output.trait_letter_size}</Text> : null}
+                            {output.trait_letter_slant != '' ? <Text style={{ marginTop: 7 }}>{output.trait_letter_slant}</Text> : null}
+                            {output.trait_letter_t != '' ? <Text style={{ marginTop: 7 }}>{output.trait_letter_t}</Text> : null}
+                            {output.trait_line_spacing != '' ? <Text style={{ marginTop: 7 }}>{output.trait_line_spacing}</Text> : null}
+                            {output.trait_margin_left != '' ? <Text style={{ marginTop: 7 }}>{output.trait_margin_left}</Text> : null}
+                            {output.trait_margin_right != '' ? <Text style={{ marginTop: 7 }}>{output.trait_margin_right}</Text> : null}
+                            {output.trait_pen_pressure != '' ? <Text style={{ marginTop: 7 }}>{output.trait_pen_pressure}</Text> : null}
+                            {output.trait_tittle_i != '' ? <Text style={{ marginTop: 7 }}>{output.trait_tittle_i}</Text> : null}
 
                         </Card.Content>
 
@@ -174,14 +208,14 @@ const Report = ({ navigation }, props) => {
 
 
                     {uploading ? <View>
-                        <Text>{transferred} % Completed </Text>
+                        <Text style={{ color: "#092C4C" }}>{transferred} % Completed </Text>
                         <ActivityIndicator size="large" color="#092C4C" />
                     </View> : <Button
                         //loading={loading}
                         mode="contained"
                         //onPress={() => navigation.navigate('MainBottomNavContainer')}
                         onPress={() => saveProfile()}
-                        style={{ width: 340, height: 51, marginTop: 20, marginBottom: 20 }}
+                        style={{ width: 340, height: 51, marginTop: 20, marginBottom: 40 }}
                     >
                         save profile
                     </Button>}
@@ -207,17 +241,19 @@ const styles = StyleSheet.create({
 
 
 
-/*function mapStateToProps(state) {
-    console.log(state)
+function mapStateToProps(state) {
+    //console.log(state)
     return {
 
-        imageUriPath: state.predictionReducer.imageUriPath
+        output: state.predictionReducer.output,
+        outputLoading: state.predictionReducer.outputLoading,
+        showCards: state.predictionReducer.showCards
 
 
     }
 
 }
 
-export default connect(mapStateToProps)(Report);*/
+export default connect(mapStateToProps)(Report);
 
-export default Report;
+//export default Report;

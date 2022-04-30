@@ -179,7 +179,7 @@ const Home = (props, { navigation }) => {
                                     <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 200, width: 350 }}>
 
                                         <Card.Content>
-                                            <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, fontWeight: 'bold', }}>Description about the predicted group</Title>
+                                            <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, fontWeight: 'bold', }}>Description on predicted group</Title>
                                             <Text style={{ marginTop: 7 }}>{output.personality_description_big_5}</Text>
                                         </Card.Content>
 

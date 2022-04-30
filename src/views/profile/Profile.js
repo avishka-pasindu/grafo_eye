@@ -54,11 +54,12 @@ const Profile = ({ navigation }, props) => {
                     console.log('Total profiles available ', querySnapshot.size);
 
                     querySnapshot.forEach(doc => {
-                        const { image, user, writer } = doc.data();
+                        const { image, user, writer, outputData } = doc.data();
                         profileList.push({
                             id: doc.id,
                             writerName: writer,
-                            handwritingImage: image
+                            handwritingImage: image,
+                            outputResult: outputData
 
 
                         });
@@ -111,13 +112,14 @@ const Profile = ({ navigation }, props) => {
                     console.log('Total profiles available ', querySnapshot.size);
 
                     querySnapshot.forEach(doc => {
-                        const { image, user, writer } = doc.data();
+                        const { image, user, writer, outputData } = doc.data();
                         if (docID == doc.id) {
                             console.log('data added to single ptofile list...')
                             singleProf.push({
                                 id: doc.id,
                                 writerName: writer,
-                                handwritingImage: image
+                                handwritingImage: image,
+                                outputResult: outputData
 
 
                             });
@@ -171,6 +173,7 @@ const Profile = ({ navigation }, props) => {
                 <ScrollView>
                     <View style={styles.container}>
                         <Text>Writer's name - {singleProfile[0].writerName}</Text>
+                        <Text>Writer's name - {singleProfile[0].outputResult.personality_description_big_5}</Text>
                         <View>
                             <Image style={{ width: 340, height: 180, marginTop: 20, marginBottom: 10, borderRadius: 8, borderColor: '#092C4C', borderWidth: 2 }} source={{ uri: singleProfile[0].handwritingImage }} />
                         </View>

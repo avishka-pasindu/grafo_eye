@@ -54,7 +54,7 @@ function MainContainer() {
                 headerStatusBarHeight: -10,
                 headerStyle: { backgroundColor: '#092C4C' },
 
-                headerTitleAlign: 'center',
+                headerTitleAlign: 'left',
                 //headerShadowVisible: true,
                 tabBarInactiveTintColor: '#Fff',
                 tabBarActiveTintColor: '#F2994A',
