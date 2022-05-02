@@ -149,7 +149,7 @@ const Home = (props, { navigation }) => {
                                     <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 305, width: 350 }}>
 
                                         <Card.Content>
-                                            <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, fontWeight: 'bold', }}>Extracted handwriting features</Title>
+                                            <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, }}>Extracted handwriting features</Title>
                                             <Text style={{ marginTop: 2 }}>{'\u29BF'} Baseline - {output.baseline}</Text>
                                             <Text style={{ marginTop: 4 }}>{'\u29BF'} Pen pressure - {output.pen_pressure}</Text>
                                             <Text style={{ marginTop: 4 }}>{'\u29BF'} Letter size - {output.letter_size}</Text>
@@ -165,21 +165,25 @@ const Home = (props, { navigation }) => {
 
 
                                     </Card>
-                                    <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 100, width: 350 }}>
+                                    <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 110, width: 350 }}>
 
                                         <Card.Content>
-                                            <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, fontWeight: 'bold', }}>Predicted personality group</Title>
-                                            <Text>{output.prediction}</Text>
+                                            <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17 }}>Predicted personality group</Title>
+                                            <Text style={{ marginTop: 1 }}>{output.prediction}</Text>
 
                                         </Card.Content>
-
+                                        {output.prediction == 'Neuroticism ' ? <Image source={require('../../assets/neuro.png')} style={{ width: 90, height: 90, marginTop: -55, marginLeft: 250 }} /> : null}
+                                        {output.prediction == 'Openness' ? <Image source={require('../../assets/open.png')} style={{ width: 90, height: 90, marginTop: -55, marginLeft: 250 }} /> : null}
+                                        {output.prediction == 'Agreeableness' ? <Image source={require('../../assets/agree.png')} style={{ width: 90, height: 90, marginTop: -55, marginLeft: 250 }} /> : null}
+                                        {output.prediction == 'Extraversion' ? <Image source={require('../../assets/extrav.png')} style={{ width: 90, height: 90, marginTop: -55, marginLeft: 250 }} /> : null}
+                                        {output.prediction == 'Conscientiousness' ? <Image source={require('../../assets/cons.png')} style={{ width: 90, height: 90, marginTop: -55, marginLeft: 250 }} /> : null}
 
                                     </Card>
 
                                     <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 200, width: 350 }}>
 
                                         <Card.Content>
-                                            <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, fontWeight: 'bold', }}>Description on predicted group</Title>
+                                            <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17 }}>Description on predicted group</Title>
                                             <Text style={{ marginTop: 7 }}>{output.personality_description_big_5}</Text>
                                         </Card.Content>
 

@@ -172,10 +172,76 @@ const Profile = ({ navigation }, props) => {
             {singleProfile != null && viewState === true ?
                 <ScrollView>
                     <View style={styles.container}>
-                        <Text>Writer's name - {singleProfile[0].writerName}</Text>
-                        <Text>Writer's name - {singleProfile[0].outputResult.personality_description_big_5}</Text>
+
                         <View>
-                            <Image style={{ width: 340, height: 180, marginTop: 20, marginBottom: 10, borderRadius: 8, borderColor: '#092C4C', borderWidth: 2 }} source={{ uri: singleProfile[0].handwritingImage }} />
+                            <Card style={{ borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 200, width: 350, marginTop: 10, marginBottom: 10 }}>
+
+                                <Card.Content>
+                                    <Title style={{ marginTop: -10, marginBottom: 10, color: '#092C4C', fontSize: 17 }}>{singleProfile[0].writerName}'s handwriting sample</Title>
+
+                                </Card.Content>
+                                <Card.Cover style={{ height: 132, width: 310, marginLeft: 17 }} source={{ uri: singleProfile[0].handwritingImage }} />
+
+                            </Card>
+                            <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 310, width: 350 }}>
+
+                                <Card.Content>
+                                    <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, }}>Extracted handwriting features</Title>
+                                    <Text style={{ marginTop: 2 }}>{'\u29BF'} Baseline - {singleProfile[0].outputResult.baseline}</Text>
+                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Pen pressure - {singleProfile[0].outputResult.pen_pressure}</Text>
+                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Letter size - {singleProfile[0].outputResult.letter_size}</Text>
+                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Line spacing - {singleProfile[0].outputResult.line_spacing}</Text>
+                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Margin left - {singleProfile[0].outputResult.margin_left}</Text>
+                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Margin Right - {singleProfile[0].outputResult.margin_right}</Text>
+                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Tittle 'i' - {singleProfile[0].outputResult.tittle_i}</Text>
+                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Lowercase letter 't' - {singleProfile[0].outputResult.letter_t}</Text>
+                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Lowercase letter 'f' - {singleProfile[0].outputResult.letter_f}</Text>
+                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Connected strokes - {singleProfile[0].outputResult.connected_strokes}</Text>
+                                    <Text style={{ marginTop: 4, marginBottom: 4 }}>{'\u29BF'} Letter slant -  {singleProfile[0].outputResult.letter_slant}</Text>
+                                </Card.Content>
+
+
+                            </Card>
+                            <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 100, width: 350 }}>
+
+                                <Card.Content>
+                                    <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, }}>Predicted personality group</Title>
+                                    <Text>{singleProfile[0].outputResult.prediction}</Text>
+                                </Card.Content>
+
+
+                            </Card>
+                            <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 200, width: 350 }}>
+
+                                <Card.Content>
+                                    <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, }}>Description on predicted group</Title>
+                                    <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.personality_description_big_5}</Text>
+                                </Card.Content>
+
+
+                            </Card>
+                            <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 380, width: 350 }}>
+
+                                <Card.Content>
+                                    <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, }}>Description on personality traits using all handwriting features</Title>
+
+
+                                    {singleProfile[0].outputResult.trait_baseline != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_baseline}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_connected_strokes != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_connected_strokes}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_letter_f != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_letter_f}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_letter_size != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_letter_size}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_letter_slant != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_letter_slant}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_letter_t != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_letter_t}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_line_spacing != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_line_spacing}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_margin_left != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_margin_left}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_margin_right != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_margin_right}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_pen_pressure != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_pen_pressure}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_tittle_i != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_tittle_i}</Text> : null}
+
+                                </Card.Content>
+
+
+                            </Card>
                         </View>
 
 
@@ -184,7 +250,7 @@ const Profile = ({ navigation }, props) => {
                             mode="contained"
                             //onPress={() => navigation.navigate('MainBottomNavContainer')}
                             onPress={() => backToLoadedProfiles()}
-                            style={{ width: 200 }}
+                            style={{ width: 340, height: 51, marginTop: 20, marginBottom: 20 }}
                         >
                             Back to profiles
                         </ButtonComponent>
