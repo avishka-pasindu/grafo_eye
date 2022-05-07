@@ -219,7 +219,7 @@ const Report = (props, { navigation }) => {
                     />
 
 
-                    {uploading ? <View>
+                    {uploading ? <View >
                         <Text style={{ color: "#092C4C" }}>{transferred} % Completed </Text>
                         <ActivityIndicator size="large" color="#092C4C" />
                     </View> : <Button
@@ -227,7 +227,7 @@ const Report = (props, { navigation }) => {
                         mode="contained"
                         //onPress={() => navigation.navigate('MainBottomNavContainer')}
                         onPress={() => saveProfile()}
-                        style={{ width: 340, height: 51, marginTop: 20, marginBottom: 40 }}
+                        style={{ width: 340, height: 51, marginTop: 20, marginBottom: 60 }}
                     >
                         save profile
                     </Button>}

@@ -259,29 +259,42 @@ const Profile = ({ navigation }, props) => {
                 </ScrollView>
                 :
                 <ScrollView >
+                    <View style={styles.container} >
 
+                        <Card style={{ borderColor: '#F2994A', borderRadius: 13, borderWidth: 2, height: 225, width: 350, marginTop: 10 }}>
+
+                            <Card.Content>
+                                <Avatar.Image style={{ marginLeft: 5 }} size={64} source={require('../../assets/user3.png')} />
+                                <Title style={{ marginTop: -10, marginBottom: 10, color: '#092C4C', fontSize: 17, }}></Title>
+                                <Text style={{ marginTop: -85, marginBottom: 0, color: '#092C4C', fontSize: 14, marginLeft: 90, fontWeight: 'bold' }}>User Email : {user.email} </Text>
+
+                                <Text style={{ marginTop: 5, marginBottom: 0, color: '#092C4C', fontSize: 14, marginLeft: 90, fontWeight: 'bold' }}>Last sign in : {user.metadata.lastSignInTime}</Text>
+                                <Text style={{ marginTop: 5, marginBottom: 0, color: '#092C4C', fontSize: 14, marginLeft: 90, fontWeight: 'bold' }}>Member since : {user.metadata.creationTime} </Text>
+                                <ButtonComponent
+                                    //loading={loading}
+                                    mode="contained"
+                                    //onPress={() => navigation.navigate('MainBottomNavContainer')}
+                                    onPress={() => loggedOut()}
+                                    style={{ width: 300, marginLeft: 7, marginTop: 20 }}
+                                >
+                                    Log out
+                                </ButtonComponent>
+                            </Card.Content>
+
+
+                        </Card>
+                    </View>
                     <View style={styles.container}>
 
-                        <Text>User Email : {user.email} </Text>
-
-                        <Text>Last sign in : {user.metadata.lastSignInTime} </Text>
-                        <Text>Member since : {user.metadata.creationTime} </Text>
 
 
 
-                        <ButtonComponent
-                            //loading={loading}
-                            mode="contained"
-                            //onPress={() => navigation.navigate('MainBottomNavContainer')}
-                            onPress={() => loggedOut()}
-                            style={{ width: 200 }}
-                        >
-                            Log out
-                        </ButtonComponent>
+
+
 
                     </View>
-                    <Text style={{ fontSize: 20, color: '#092C4C', alignContent: 'center', justifyContent: 'center', paddingStart: 60, fontWeight: 'bold', paddingBottom: 30 }}>________ Saved Profiles ________</Text>
-                    {loadingProfiles === true ? <ActivityIndicator size={'large'} /> :
+                    <Text style={{ fontSize: 20, color: '#092C4C', fontWeight: 'bold', marginLeft: 21, marginTop: -30, fontSize: 20, marginBottom: 10 }}> Saved Profiles </Text>
+                    {loadingProfiles === true ? <ActivityIndicator style={{ marginTop: 20 }} size={'large'} color={'#092C4C'} /> :
                         <View>
                             {profiles.map((profile) =>
 

@@ -143,7 +143,7 @@ const Home = (props, { navigation }) => {
                             Clear
                         </Button>
 
-                        {outputLoading ? <ActivityIndicator size={'large'} /> :
+                        {outputLoading ? <ActivityIndicator style={{ marginTop: 20, color: '#092C4C' }} size={'large'} color={'#092C4C'} /> :
                             <View>
                                 {showCards ? <View>
                                     <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 305, width: 350 }}>
@@ -212,7 +212,7 @@ const Home = (props, { navigation }) => {
                 </ScrollView>
                 :
                 <View style={styles.container}>
-                    <Image style={{ width: 200, height: 150, marginTop: 190, marginBottom: 10, borderRadius: 8 }} source={{ uri: 'https://res.cloudinary.com/ddyx8lon3/image/upload/v1651214282/logo-transparent_s5onei.png' }} />
+                    <Image style={{ width: 300, height: 230, marginTop: 300, marginBottom: 0, borderRadius: 0 }} source={require('../../assets/onbrd-removebg-preview.png')} />
                     <ActionButton buttonColor="#F2994A" style={{ marginTop: 490 }}>
                         <ActionButton.Item buttonColor='#092C4C' title="Take photo" onPress={openTheCamera}>
                             <Icon name="camera" style={styles.actionButtonIcon} />

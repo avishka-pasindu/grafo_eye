@@ -25,10 +25,10 @@ export const getPrediction = (file) => {
         getPredictionLoading(dispatch)
         let config = {
             method: 'post',
-            url: `http://10.0.2.2:5000/data`,
+            url: `http://10.0.2.2:5000/prediction`,
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             data: {
-                filename: file
+                image: file
 
             }
         };

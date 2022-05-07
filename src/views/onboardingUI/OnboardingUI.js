@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { Image, Text } from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
 
 
@@ -9,21 +9,21 @@ const OnboardingUI = ({ navigation }) => {
             pages={[
                 {
                     backgroundColor: '#fff',
-                    image: <Image style={{ width: 180, height: 180 }} source={require('../../assets/logoandname.png')} />,
-                    title: '',
-                    subtitle: 'Done with React Native Onboarding1',
+                    image: <Image style={{ width: 160, height: 160 }} source={require('../../assets/logoandname.png')} />,
+                    title: 'Welcome !',
+                    subtitle: 'Grafo Eye is a mobile application for checking your Big Five personality group and identifying personality traits.',
                 },
                 {
-                    backgroundColor: '#E3F4FF',
-                    image: <Image style={{ width: 180, height: 180 }} source={require('../../assets/logo-transparent.png')} />,
-                    title: 'Hi There,',
-                    subtitle: 'Done with React Native Onboarding2',
+                    backgroundColor: '#fff',
+                    image: <Image style={{ width: 310, height: 250 }} source={require('../../assets/homebanner-removebg-preview.png')} />,
+                    title: 'Check',
+                    subtitle: 'Your Big Five personality group and associated personality traits',
                 },
                 {
-                    backgroundColor: '#FFEEE2',
-                    image: <Image style={{ width: 180, height: 180 }} source={require('../../assets/logo-transparent.png')} />,
-                    title: 'Get started ...',
-                    subtitle: 'Done with React Native Onboarding3',
+                    backgroundColor: '#fff',
+                    image: <Image style={{ width: 300, height: 240 }} source={require('../../assets/onbrd-removebg-preview.png')} />,
+                    title: 'Identify',
+                    subtitle: 'Your personality traits and develop them.',
                 },
             ]}
             onSkip={() => navigation.replace("Login")}
