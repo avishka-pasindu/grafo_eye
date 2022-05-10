@@ -143,24 +143,24 @@ const Home = (props, { navigation }) => {
                             Clear
                         </Button>
 
-                        {outputLoading ? <ActivityIndicator style={{ marginTop: 20, color: '#092C4C' }} size={'large'} color={'#092C4C'} /> :
+                        {outputLoading ? <View><ActivityIndicator style={{ marginTop: 20, color: '#092C4C' }} size={'large'} color={'#092C4C'} /><Text style={{ color: '#092C4C', fontSize: 20, marginTop: 20 }}>Loading results ...</Text></View> :
                             <View>
                                 {showCards ? <View>
                                     <Card style={{ marginTop: 10, marginBottom: 10, borderColor: '#092C4C', borderRadius: 13, borderWidth: 2, height: 305, width: 350 }}>
 
                                         <Card.Content>
                                             <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, }}>Extracted handwriting features</Title>
-                                            <Text style={{ marginTop: 2 }}>{'\u29BF'} Baseline - {output.baseline}</Text>
-                                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Pen pressure - {output.pen_pressure}</Text>
-                                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Letter size - {output.letter_size}</Text>
-                                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Line spacing - {output.line_spacing}</Text>
-                                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Margin left - {output.margin_left}</Text>
-                                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Margin Right - {output.margin_right}</Text>
-                                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Tittle 'i' - {output.tittle_i}</Text>
-                                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Lowercase letter 't' - {output.letter_t}</Text>
-                                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Lowercase letter 'f' - {output.letter_f}</Text>
-                                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Connected strokes - {output.connected_strokes}</Text>
-                                            <Text style={{ marginTop: 4, marginBottom: 4 }}>{'\u29BF'} Letter slant -  {output.letter_slant}</Text>
+                                            <Text style={{ marginTop: 2, color: '#000' }}>{'\u29BF'} Baseline - {output.baseline}</Text>
+                                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Pen pressure - {output.pen_pressure}</Text>
+                                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Letter size - {output.letter_size}</Text>
+                                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Line spacing - {output.line_spacing}</Text>
+                                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Margin left - {output.margin_left}</Text>
+                                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Margin Right - {output.margin_right}</Text>
+                                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Tittle 'i' - {output.tittle_i}</Text>
+                                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Lowercase letter 't' - {output.letter_t}</Text>
+                                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Lowercase letter 'f' - {output.letter_f}</Text>
+                                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Connected strokes - {output.connected_strokes}</Text>
+                                            <Text style={{ marginTop: 4, color: '#000', marginBottom: 4 }}>{'\u29BF'} Letter slant -  {output.letter_slant}</Text>
                                         </Card.Content>
 
 
@@ -169,7 +169,7 @@ const Home = (props, { navigation }) => {
 
                                         <Card.Content>
                                             <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17 }}>Predicted personality group</Title>
-                                            <Text style={{ marginTop: 1 }}>{output.prediction}</Text>
+                                            <Text style={{ marginTop: 1, color: '#000' }}>{output.prediction}</Text>
 
                                         </Card.Content>
                                         {output.prediction == 'Neuroticism ' ? <Image source={require('../../assets/neuro.png')} style={{ width: 90, height: 90, marginTop: -55, marginLeft: 250 }} /> : null}
@@ -184,7 +184,7 @@ const Home = (props, { navigation }) => {
 
                                         <Card.Content>
                                             <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17 }}>Description on predicted group</Title>
-                                            <Text style={{ marginTop: 7 }}>{output.personality_description_big_5}</Text>
+                                            <Text style={{ marginTop: 7, color: '#000' }}>{output.personality_description_big_5}</Text>
                                         </Card.Content>
 
 
@@ -211,8 +211,16 @@ const Home = (props, { navigation }) => {
 
                 </ScrollView>
                 :
-                <View style={styles.container}>
-                    <Image style={{ width: 300, height: 230, marginTop: 300, marginBottom: 0, borderRadius: 0 }} source={require('../../assets/onbrd-removebg-preview.png')} />
+                <View style={{
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+
+                }}>
+
+                    <Image style={{ width: 300, height: 230, marginTop: 400, marginBottom: 0, borderRadius: 0 }} source={require('../../assets/onbrd-removebg-preview.png')} />
+                    <Text style={{ width: 350, height: 80, marginTop: 20, textAlign: 'center', marginBottom: 0, borderRadius: 0, marginLeft: 0, color: '#092C4C', fontSize: 22 }}  >Identify your personality traits</Text>
+                    <Text style={{ width: 350, height: 70, marginTop: -40, textAlign: 'center', marginBottom: 0, borderRadius: 0, marginLeft: 0, color: '#092C4C', fontSize: 22 }}  >Now !</Text>
                     <ActionButton buttonColor="#F2994A" style={{ marginTop: 490 }}>
                         <ActionButton.Item buttonColor='#092C4C' title="Take photo" onPress={openTheCamera}>
                             <Icon name="camera" style={styles.actionButtonIcon} />
@@ -222,6 +230,7 @@ const Home = (props, { navigation }) => {
                         </ActionButton.Item>
 
                     </ActionButton>
+
                 </View>}
 
         </SafeAreaView>

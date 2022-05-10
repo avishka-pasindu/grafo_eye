@@ -14,6 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { async } from '@firebase/util';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
+import Toast from 'react-native-toast-message'
 
 const Profile = ({ navigation }, props) => {
     const { user, logout, setUser } = useContext(AuthContext)
@@ -150,7 +151,13 @@ const Profile = ({ navigation }, props) => {
     function deleteProfile(id) {
 
         console.log('profile deleted !', id);
-
+        Toast.show({
+            type: 'success',
+            position: 'top',
+            visibilityTime: 7000,
+            text1: 'Hello',
+            text2: 'This is some something ?'
+        })
         firestore()
             .collection('Test_DB')
             .doc(id)
@@ -169,6 +176,7 @@ const Profile = ({ navigation }, props) => {
     return (
 
         <SafeAreaView>
+
             {singleProfile != null && viewState === true ?
                 <ScrollView>
                     <View style={styles.container}>
@@ -187,17 +195,17 @@ const Profile = ({ navigation }, props) => {
 
                                 <Card.Content>
                                     <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, }}>Extracted handwriting features</Title>
-                                    <Text style={{ marginTop: 2 }}>{'\u29BF'} Baseline - {singleProfile[0].outputResult.baseline}</Text>
-                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Pen pressure - {singleProfile[0].outputResult.pen_pressure}</Text>
-                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Letter size - {singleProfile[0].outputResult.letter_size}</Text>
-                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Line spacing - {singleProfile[0].outputResult.line_spacing}</Text>
-                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Margin left - {singleProfile[0].outputResult.margin_left}</Text>
-                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Margin Right - {singleProfile[0].outputResult.margin_right}</Text>
-                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Tittle 'i' - {singleProfile[0].outputResult.tittle_i}</Text>
-                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Lowercase letter 't' - {singleProfile[0].outputResult.letter_t}</Text>
-                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Lowercase letter 'f' - {singleProfile[0].outputResult.letter_f}</Text>
-                                    <Text style={{ marginTop: 4 }}>{'\u29BF'} Connected strokes - {singleProfile[0].outputResult.connected_strokes}</Text>
-                                    <Text style={{ marginTop: 4, marginBottom: 4 }}>{'\u29BF'} Letter slant -  {singleProfile[0].outputResult.letter_slant}</Text>
+                                    <Text style={{ marginTop: 2, color: '#000' }}>{'\u29BF'} Baseline - {singleProfile[0].outputResult.baseline}</Text>
+                                    <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Pen pressure - {singleProfile[0].outputResult.pen_pressure}</Text>
+                                    <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Letter size - {singleProfile[0].outputResult.letter_size}</Text>
+                                    <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Line spacing - {singleProfile[0].outputResult.line_spacing}</Text>
+                                    <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Margin left - {singleProfile[0].outputResult.margin_left}</Text>
+                                    <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Margin Right - {singleProfile[0].outputResult.margin_right}</Text>
+                                    <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Tittle 'i' - {singleProfile[0].outputResult.tittle_i}</Text>
+                                    <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Lowercase letter 't' - {singleProfile[0].outputResult.letter_t}</Text>
+                                    <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Lowercase letter 'f' - {singleProfile[0].outputResult.letter_f}</Text>
+                                    <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Connected strokes - {singleProfile[0].outputResult.connected_strokes}</Text>
+                                    <Text style={{ marginTop: 4, marginBottom: 4, color: '#000' }}>{'\u29BF'} Letter slant -  {singleProfile[0].outputResult.letter_slant}</Text>
                                 </Card.Content>
 
 
@@ -206,7 +214,7 @@ const Profile = ({ navigation }, props) => {
 
                                 <Card.Content>
                                     <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, }}>Predicted personality group</Title>
-                                    <Text>{singleProfile[0].outputResult.prediction}</Text>
+                                    <Text style={{ color: '#000' }}>{singleProfile[0].outputResult.prediction}</Text>
                                 </Card.Content>
 
 
@@ -215,7 +223,7 @@ const Profile = ({ navigation }, props) => {
 
                                 <Card.Content>
                                     <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, }}>Description on predicted group</Title>
-                                    <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.personality_description_big_5}</Text>
+                                    <Text style={{ marginTop: 7, color: '#000' }}>{singleProfile[0].outputResult.personality_description_big_5}</Text>
                                 </Card.Content>
 
 
@@ -226,17 +234,17 @@ const Profile = ({ navigation }, props) => {
                                     <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, }}>Description on personality traits using all handwriting features</Title>
 
 
-                                    {singleProfile[0].outputResult.trait_baseline != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_baseline}</Text> : null}
-                                    {singleProfile[0].outputResult.trait_connected_strokes != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_connected_strokes}</Text> : null}
-                                    {singleProfile[0].outputResult.trait_letter_f != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_letter_f}</Text> : null}
-                                    {singleProfile[0].outputResult.trait_letter_size != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_letter_size}</Text> : null}
-                                    {singleProfile[0].outputResult.trait_letter_slant != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_letter_slant}</Text> : null}
-                                    {singleProfile[0].outputResult.trait_letter_t != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_letter_t}</Text> : null}
-                                    {singleProfile[0].outputResult.trait_line_spacing != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_line_spacing}</Text> : null}
-                                    {singleProfile[0].outputResult.trait_margin_left != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_margin_left}</Text> : null}
-                                    {singleProfile[0].outputResult.trait_margin_right != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_margin_right}</Text> : null}
-                                    {singleProfile[0].outputResult.trait_pen_pressure != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_pen_pressure}</Text> : null}
-                                    {singleProfile[0].outputResult.trait_tittle_i != '' ? <Text style={{ marginTop: 7 }}>{singleProfile[0].outputResult.trait_tittle_i}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_baseline != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{singleProfile[0].outputResult.trait_baseline}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_connected_strokes != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{singleProfile[0].outputResult.trait_connected_strokes}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_letter_f != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{singleProfile[0].outputResult.trait_letter_f}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_letter_size != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{singleProfile[0].outputResult.trait_letter_size}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_letter_slant != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{singleProfile[0].outputResult.trait_letter_slant}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_letter_t != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{singleProfile[0].outputResult.trait_letter_t}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_line_spacing != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{singleProfile[0].outputResult.trait_line_spacing}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_margin_left != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{singleProfile[0].outputResult.trait_margin_left}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_margin_right != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{singleProfile[0].outputResult.trait_margin_right}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_pen_pressure != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{singleProfile[0].outputResult.trait_pen_pressure}</Text> : null}
+                                    {singleProfile[0].outputResult.trait_tittle_i != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{singleProfile[0].outputResult.trait_tittle_i}</Text> : null}
 
                                 </Card.Content>
 
@@ -259,6 +267,7 @@ const Profile = ({ navigation }, props) => {
                 </ScrollView>
                 :
                 <ScrollView >
+
                     <View style={styles.container} >
 
                         <Card style={{ borderColor: '#F2994A', borderRadius: 13, borderWidth: 2, height: 225, width: 350, marginTop: 10 }}>

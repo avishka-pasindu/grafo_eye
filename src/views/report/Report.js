@@ -147,17 +147,17 @@ const Report = (props, { navigation }) => {
 
                         <Card.Content>
                             <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, }}>Extracted handwriting features</Title>
-                            <Text style={{ marginTop: 2 }}>{'\u29BF'} Baseline - {output.baseline}</Text>
-                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Pen pressure - {output.pen_pressure}</Text>
-                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Letter size - {output.letter_size}</Text>
-                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Line spacing - {output.line_spacing}</Text>
-                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Margin left - {output.margin_left}</Text>
-                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Margin Right - {output.margin_right}</Text>
-                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Tittle 'i' - {output.tittle_i}</Text>
-                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Lowercase letter 't' - {output.letter_t}</Text>
-                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Lowercase letter 'f' - {output.letter_f}</Text>
-                            <Text style={{ marginTop: 4 }}>{'\u29BF'} Connected strokes - {output.connected_strokes}</Text>
-                            <Text style={{ marginTop: 4, marginBottom: 4 }}>{'\u29BF'} Letter slant -  {output.letter_slant}</Text>
+                            <Text style={{ marginTop: 2, color: '#000' }}>{'\u29BF'} Baseline - {output.baseline}</Text>
+                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Pen pressure - {output.pen_pressure}</Text>
+                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Letter size - {output.letter_size}</Text>
+                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Line spacing - {output.line_spacing}</Text>
+                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Margin left - {output.margin_left}</Text>
+                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Margin Right - {output.margin_right}</Text>
+                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Tittle 'i' - {output.tittle_i}</Text>
+                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Lowercase letter 't' - {output.letter_t}</Text>
+                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Lowercase letter 'f' - {output.letter_f}</Text>
+                            <Text style={{ marginTop: 4, color: '#000' }}>{'\u29BF'} Connected strokes - {output.connected_strokes}</Text>
+                            <Text style={{ marginTop: 4, marginBottom: 4, color: '#000' }}>{'\u29BF'} Letter slant -  {output.letter_slant}</Text>
                         </Card.Content>
 
 
@@ -166,7 +166,7 @@ const Report = (props, { navigation }) => {
 
                         <Card.Content>
                             <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, }}>Predicted personality group</Title>
-                            <Text>{output.prediction}</Text>
+                            <Text style={{ color: '#000' }}>{output.prediction}</Text>
                         </Card.Content>
 
                         {output.prediction == 'Neuroticism ' ? <Image source={require('../../assets/neuro.png')} style={{ width: 90, height: 90, marginTop: -55, marginLeft: 250 }} /> : null}
@@ -180,7 +180,7 @@ const Report = (props, { navigation }) => {
 
                         <Card.Content>
                             <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, }}>Description on predicted group</Title>
-                            <Text style={{ marginTop: 7 }}>{output.personality_description_big_5}</Text>
+                            <Text style={{ marginTop: 7, color: '#000' }}>{output.personality_description_big_5}</Text>
                         </Card.Content>
 
 
@@ -191,17 +191,17 @@ const Report = (props, { navigation }) => {
                             <Title style={{ marginTop: -10, marginBottom: 0, color: '#092C4C', fontSize: 17, }}>Description on personality traits using all handwriting features</Title>
 
 
-                            {output.trait_baseline != '' ? <Text style={{ marginTop: 7 }}>{output.trait_baseline}</Text> : null}
-                            {output.trait_connected_strokes != '' ? <Text style={{ marginTop: 7 }}>{output.trait_connected_strokes}</Text> : null}
-                            {output.trait_letter_f != '' ? <Text style={{ marginTop: 7 }}>{output.trait_letter_f}</Text> : null}
-                            {output.trait_letter_size != '' ? <Text style={{ marginTop: 7 }}>{output.trait_letter_size}</Text> : null}
-                            {output.trait_letter_slant != '' ? <Text style={{ marginTop: 7 }}>{output.trait_letter_slant}</Text> : null}
-                            {output.trait_letter_t != '' ? <Text style={{ marginTop: 7 }}>{output.trait_letter_t}</Text> : null}
-                            {output.trait_line_spacing != '' ? <Text style={{ marginTop: 7 }}>{output.trait_line_spacing}</Text> : null}
-                            {output.trait_margin_left != '' ? <Text style={{ marginTop: 7 }}>{output.trait_margin_left}</Text> : null}
-                            {output.trait_margin_right != '' ? <Text style={{ marginTop: 7 }}>{output.trait_margin_right}</Text> : null}
-                            {output.trait_pen_pressure != '' ? <Text style={{ marginTop: 7 }}>{output.trait_pen_pressure}</Text> : null}
-                            {output.trait_tittle_i != '' ? <Text style={{ marginTop: 7 }}>{output.trait_tittle_i}</Text> : null}
+                            {output.trait_baseline != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{output.trait_baseline}</Text> : null}
+                            {output.trait_connected_strokes != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{output.trait_connected_strokes}</Text> : null}
+                            {output.trait_letter_f != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{output.trait_letter_f}</Text> : null}
+                            {output.trait_letter_size != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{output.trait_letter_size}</Text> : null}
+                            {output.trait_letter_slant != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{output.trait_letter_slant}</Text> : null}
+                            {output.trait_letter_t != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{output.trait_letter_t}</Text> : null}
+                            {output.trait_line_spacing != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{output.trait_line_spacing}</Text> : null}
+                            {output.trait_margin_left != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{output.trait_margin_left}</Text> : null}
+                            {output.trait_margin_right != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{output.trait_margin_right}</Text> : null}
+                            {output.trait_pen_pressure != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{output.trait_pen_pressure}</Text> : null}
+                            {output.trait_tittle_i != '' ? <Text style={{ marginTop: 7, color: '#000' }}>{output.trait_tittle_i}</Text> : null}
 
                         </Card.Content>
 
