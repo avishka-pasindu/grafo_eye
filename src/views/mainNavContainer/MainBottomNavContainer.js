@@ -69,7 +69,7 @@ function MainContainer() {
 
             <Tab.Screen name={homeName} component={Home} />
             <Tab.Screen name={report} component={Report} />
-
+            <Tab.Screen name={instructions} component={Instructions} />
             <Tab.Screen name={profile} component={Profile} />
 
 

@@ -218,9 +218,10 @@ const Home = (props, { navigation }) => {
 
                 }}>
 
-                    <Image style={{ width: 300, height: 230, marginTop: 400, marginBottom: 0, borderRadius: 0 }} source={require('../../assets/onbrd-removebg-preview.png')} />
-                    <Text style={{ width: 350, height: 80, marginTop: 20, textAlign: 'center', marginBottom: 0, borderRadius: 0, marginLeft: 0, color: '#092C4C', fontSize: 22 }}  >Identify your personality traits</Text>
-                    <Text style={{ width: 350, height: 70, marginTop: -40, textAlign: 'center', marginBottom: 0, borderRadius: 0, marginLeft: 0, color: '#092C4C', fontSize: 22 }}  >Now !</Text>
+                    <Image style={{ width: 300, height: 230, marginTop: 300, marginBottom: 0, borderRadius: 0 }} source={require('../../assets/onbrd-removebg-preview.png')} />
+                    <Image source={{ uri: 'https://res.cloudinary.com/ddyx8lon3/image/upload/c_scale,w_588/v1657115189/homeText_dfaexn.png' }} style={{ width: 380, height: 60, marginTop: 30, marginLeft: 5, marginBottom: -20 }} />
+                    <Image source={{ uri: 'https://res.cloudinary.com/ddyx8lon3/image/upload/c_scale,h_69,q_100/v1657114784/hint1_oyqoow.png' }} style={{ width: 250, height: 40, marginTop: 210, marginLeft: -95, marginBottom: -280 }} />
+
                     <ActionButton buttonColor="#F2994A" style={{ marginTop: 490 }}>
                         <ActionButton.Item buttonColor='#092C4C' title="Take photo" onPress={openTheCamera}>
                             <Icon name="camera" style={styles.actionButtonIcon} />
